@@ -160,7 +160,7 @@ addEventListener('wheel', (e) => {
   verrou = now + 850;
 }, { passive: true });
 let toucher = null;
-addEventListener('touchstart', (e) => { if (!estDeck() || e.target.closest('input, .rail, .tb')) { toucher = null; return; } toucher = [e.touches[0].clientX, e.touches[0].clientY]; }, { passive: true });
+addEventListener('touchstart', (e) => { if (!estDeck() || e.target.closest('input, button, a, .rail, .seg, .bascules, .form')) { toucher = null; return; } toucher = [e.touches[0].clientX, e.touches[0].clientY]; }, { passive: true });
 addEventListener('touchend', (e) => {
   if (!toucher) return;
   const dx = e.changedTouches[0].clientX - toucher[0], dy = e.changedTouches[0].clientY - toucher[1];
@@ -189,9 +189,16 @@ function curseur(hote, { id, label, min, max, pas, val, fmt }, rappel) {
     poser(v) { const avant = input.value; input.value = v; if (input.value !== avant) maj(); },
   };
 }
+/* Sur téléphone, les onglets défilent au doigt : celui qui devient actif revient au centre. */
+function centrer(el) {
+  const zone = el.closest('.rail, .zoneC');
+  if (!zone || zone.scrollWidth <= zone.clientWidth) return;
+  const z = zone.getBoundingClientRect(), r = el.getBoundingClientRect();
+  zone.scrollTo({ left: zone.scrollLeft + r.left - z.left - (z.width - r.width) / 2, behavior: calme ? 'auto' : 'smooth' });
+}
 function segment(hote, libelles, rappel, depart = 0) {
   hote.innerHTML = libelles.map((l, i) => `<button type="button" aria-pressed="${i === depart}">${l}</button>`).join('');
-  const poser = (i) => $$('button', hote).forEach((x, j) => x.setAttribute('aria-pressed', String(j === i)));
+  const poser = (i) => $$('button', hote).forEach((x, j) => { x.setAttribute('aria-pressed', String(j === i)); if (j === i) centrer(x); });
   $$('button', hote).forEach((b, i) => b.addEventListener('click', () => { poser(i); rappel(i); }));
   return (i) => { poser(i); rappel(i); };
 }
@@ -534,7 +541,7 @@ function panneau(cle, hote) {
   const ouvrir = (id) => {
     const [, titre, gains] = liste.find((l) => l[0] === id);
     e.id = id; e.t0 = null;
-    $$('.rail button', hote).forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.m === id)); b.style.setProperty('--p', 0); });
+    $$('.rail button', hote).forEach((b) => { b.setAttribute('aria-pressed', String(b.dataset.m === id)); b.style.setProperty('--p', 0); if (b.dataset.m === id) centrer(b); });
     $(`#gain-${cle}`).innerHTML = `<div class="fondu"><h2>${titre}</h2><ul>${gains.map((g) => `<li>${g}</li>`).join('')}</ul><div class="actions">${boutonAjout(id)}</div></div>`;
     e.tache = DEMOS[id]($(`#demo-${cle}`));
     COURANT[sceneId] = id;
@@ -838,8 +845,9 @@ function boucle(now) {
 requestAnimationFrame(boucle);
 
 addEventListener('resize', () => {
-  const doit = innerWidth > 860 && innerHeight > 500;
-  if (doit !== estDeck()) { location.reload(); return; }
+  if ((innerWidth <= 860) !== racine.classList.contains('mobile')) { location.reload(); return; }
+  // Le clavier d'un téléphone réduit la fenêtre : on n'ajuste pas l'écran pendant la saisie.
+  if (document.activeElement && document.activeElement.matches('input')) return;
   toutAjuster();
   REDESSINS.forEach((f) => f());
 });
