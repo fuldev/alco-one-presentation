@@ -171,6 +171,7 @@ h1 em { font-style: normal; color: var(--acc-hi); }
 .onglets-c button span { font-size: .875rem; line-height: 1.35; }
 .onglets-c button[aria-pressed="true"] { border-top-color: var(--acc-hi); background: var(--card-on); color: var(--muted); }
 .onglets-c button::after, .rail button::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: calc(var(--p, 0) * 100%); background: var(--acc-hi); }
+.rail button[aria-pressed="true"]::after { height: 3px; background: var(--acc-ink); }
 /* Les captures s'affichent entières, sans cadre ni recadrage. */
 .captures { position: relative; width: 100%; aspect-ratio: 1891 / 885; }
 /* Pas de visibility ici : une valeur « visible » passerait outre l'écran masqué et capterait la souris des autres écrans. */
@@ -179,11 +180,13 @@ h1 em { font-style: normal; color: var(--acc-hi); }
 
 /* 5-7. Modules */
 .mod { display: flex; flex-direction: column; gap: .75rem; min-width: 0; }
-.rail { display: flex; gap: .25rem; min-width: 0; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line-2); }
+.rail { display: flex; gap: .4rem; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .rail::-webkit-scrollbar { display: none; }
-.rail button { position: relative; flex: 1 0 auto; min-height: 2.6rem; padding: .3rem 1rem; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--dim); font: 600 1rem var(--f-titre); text-align: center; transition: color .2s, background .2s, border-color .2s; white-space: nowrap; }
-.rail button:hover { color: var(--text); }
-.rail button[aria-pressed="true"] { border-bottom-color: var(--acc-hi); background: var(--card-on); color: var(--text); }
+/* De vrais boutons : un fond, une bordure, une réaction au survol, l'onglet actif en plein. */
+.rail button { position: relative; flex: 1 0 auto; min-height: 2.75rem; padding: .3rem 1rem; overflow: hidden; border: 1px solid var(--line-3); border-radius: var(--r); background: rgba(44, 106, 210, .24); color: var(--text); font: 600 1rem var(--f-titre); text-align: center; cursor: pointer; transition: color .15s, background .15s, border-color .15s, box-shadow .15s; white-space: nowrap; }
+.rail button:hover { border-color: var(--acc-hi); background: rgba(77, 163, 255, .34); box-shadow: 0 .25rem .9rem rgba(77, 163, 255, .25); }
+.rail button:focus-visible { outline-offset: -3px; }
+.rail button[aria-pressed="true"] { border-color: var(--acc); background: var(--acc); color: var(--acc-ink); font-weight: 700; }
 .scenette { display: flex; flex-direction: column; gap: .75rem; min-width: 0; }
 .demo { display: flex; flex-direction: column; gap: .75rem; min-width: 0; min-height: 0; padding: 1rem 1.1rem; border: 1px solid var(--line-2); border-radius: var(--r); background: rgba(5, 20, 56, .72); overflow: hidden; }
 .demo-t { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 2.3rem; flex: none; }
@@ -415,7 +418,19 @@ tr.on td { background: var(--card-on); }
 .copier { padding: .15rem .5rem; border: 1px solid var(--line-2); border-radius: 3px; background: none; color: var(--dim); font-size: .75rem; }
 .copier:hover { color: var(--text); }
 
-@media (max-width: 1180px) { .nav { display: none; } }
+/* Tous les onglets et sélecteurs suivent la même règle : un vrai bouton, une réaction au survol, l'actif en plein. */
+.onglets-c button, .seg button, .chip, .liste-b button { border: 1px solid var(--line-3); border-radius: var(--r); background: rgba(44, 106, 210, .24); color: var(--text); cursor: pointer; transition: color .15s, background .15s, border-color .15s, box-shadow .15s; }
+.onglets-c button:hover, .seg button:hover, .chip:hover, .liste-b button:hover { border-color: var(--acc-hi); background: rgba(77, 163, 255, .34); box-shadow: 0 .2rem .75rem rgba(77, 163, 255, .22); color: var(--text); }
+.onglets-c button[aria-pressed="true"], .seg button[aria-pressed="true"], .chip[aria-pressed="true"], .liste-b button[aria-pressed="true"], .onglets-c button[aria-pressed="true"]:hover, .seg button[aria-pressed="true"]:hover, .chip[aria-pressed="true"]:hover, .liste-b button[aria-pressed="true"]:hover { border-color: var(--acc); background: var(--acc); color: var(--acc-ink); font-weight: 600; }
+.seg { gap: .3rem; padding: 0; border: 0; background: none; }
+.onglets-c button { border-top: 1px solid var(--line-3); }
+.onglets-c button span { color: var(--muted); }
+.onglets-c button[aria-pressed="true"] b, .onglets-c button[aria-pressed="true"] span { color: var(--acc-ink); }
+.onglets-c button[aria-pressed="true"]::after { height: 3px; background: var(--acc-ink); }
+.liste-b { gap: .3rem; }
+
+/* Sans le menu central, le bouton se cale à droite de la barre. */
+@media (max-width: 1180px) { .nav { display: none; } .nav + .btn { margin-left: auto; } }
 @media (max-aspect-ratio: 1 / 1) {
   .intro video { object-fit: contain; -webkit-mask-image: radial-gradient(ellipse 46% 20% at 50% 49%, #000 60%, transparent 90%); mask-image: radial-gradient(ellipse 46% 20% at 50% 49%, #000 60%, transparent 90%); }
   .intro-logo { width: 82vw; }
@@ -443,7 +458,8 @@ tr.on td { background: var(--card-on); }
   .trois, .deux, .deux-f { grid-template-columns: minmax(0, 1fr); }
   .marche { grid-template-columns: 6.5rem minmax(0, 1fr) 2.4rem; }
   .seuil.large { grid-template-columns: 7rem minmax(0, 1fr) 4rem; }
-  .barre .btn { padding-inline: .8rem; }
+  .barre { gap: .75rem; }
+  .barre .btn { min-height: 2.5rem; padding-inline: .9rem; }
 }
 @media (max-width: 420px) { .tuiles { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .chaine { font-size: .75rem; } .chaine i { width: 1rem; } }
 @media (prefers-reduced-motion: reduce) {

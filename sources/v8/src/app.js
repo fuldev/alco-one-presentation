@@ -525,7 +525,7 @@ const PANNEAUX = {
     ['ilaap', 'Réunissez l’adéquation de la liquidité sans ressaisie', ['Lu sur les calculs des modules', 'Approches normative et économique', 'Valeur la plus défavorable de l’horizon']],
   ]],
 };
-const DUREE_MODULE = 11;
+const DUREE_MODULE = 7;
 const MONTES = {};
 function panneau(cle, hote) {
   const [sceneId, liste] = PANNEAUX[cle];
@@ -670,7 +670,7 @@ $$('[data-famille]').forEach((z) => {
   TACHES['s-appli'] = (t) => {
     if (!auto) return;
     if (t0 === null) t0 = t;
-    const p = (t - t0) / 6;
+    const p = (t - t0) / 4;
     o[i].style.setProperty('--p', Math.min(p, 1));
     if (p >= 1) poser((i + 1) % img.length);
   };

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alco-one.com/sitemap.xml

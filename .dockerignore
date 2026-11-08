@@ -1,0 +1,5 @@
+# Liste blanche : le contexte de construction ne contient que ce que l'image sert.
+*
+!v8/index.html
+!deploy/coolify/nginx.conf
+!deploy/coolify/public
