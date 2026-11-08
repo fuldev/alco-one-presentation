@@ -38,17 +38,19 @@ const MODULES = [
 ];
 const SCENE_DE = { bilan: 's-bilan', risques: 's-risques', portefeuille: 's-portefeuille', reporting: 's-reporting' };
 const choisis = new Set();
+/* Le reporting s'ajoute d'un seul geste : ses rapports et ses états vont ensemble. */
+const MODULES_DE = (id) => (id === 'reporting' ? ['rapports', 'etats'] : [id]);
 
 function majChoix() {
   $$('[data-ajout]').forEach((b) => {
-    const dedans = choisis.has(b.dataset.ajout);
+    const dedans = MODULES_DE(b.dataset.ajout).every((i) => choisis.has(i));
     b.setAttribute('aria-pressed', String(dedans));
     const seul = MODULES.find((m) => m.id === b.dataset.ajout);
     if (!b.dataset.base) b.dataset.base = b.textContent;
     b.textContent = !dedans ? b.dataset.base : (b.dataset.base === 'Ajouter à ma démo' ? '✓ Dans ma démo' : `✓ ${seul.nom} dans ma démo`);
   });
   $$('#choixForm .chip').forEach((c) => c.setAttribute('aria-pressed', String(choisis.has(c.dataset.id))));
-  const n = choisis.size, compteur = $('#compteur');
+  const n = choisis.size - (choisis.has('rapports') && choisis.has('etats') ? 1 : 0), compteur = $('#compteur');
   compteur.hidden = n === 0;
   compteur.textContent = n;
   const nb = $('#nbChoisis');
@@ -61,7 +63,7 @@ const scenes = $$('.scene');
 let rang = -1;
 const estDeck = () => racine.classList.contains('deck');
 /* Le module que le bouton de la ligne du décompte ajoute, écran par écran. */
-const COURANT = { 's-portefeuille': 'gpo' };
+const COURANT = { 's-portefeuille': 'gpo', 's-reporting': 'reporting' };
 function majBarre() {
   const s = scenes[rang], id = s && COURANT[s.id], b = $('#ajoutBarre');
   b.hidden = !id;
@@ -125,7 +127,11 @@ majLecture();
 
 document.addEventListener('click', (e) => {
   const ajout = e.target.closest('[data-ajout]');
-  if (ajout) { const id = ajout.dataset.ajout; if (choisis.has(id)) choisis.delete(id); else choisis.add(id); majChoix(); }
+  if (ajout) {
+    const ids = MODULES_DE(ajout.dataset.ajout), tous = ids.every((i) => choisis.has(i));
+    ids.forEach((i) => { if (tous) choisis.delete(i); else choisis.add(i); });
+    majChoix();
+  }
   const aller = e.target.closest('[data-aller]');
   if (aller) allerA(aller.dataset.aller);
   const copier = e.target.closest('[data-copier]');
@@ -191,7 +197,7 @@ function curseur(hote, { id, label, min, max, pas, val, fmt }, rappel) {
 }
 /* Sur téléphone, les onglets défilent au doigt : celui qui devient actif revient au centre. */
 function centrer(el) {
-  const zone = el.closest('.rail, .zoneC');
+  const zone = el.closest('.rail, .zoneC, .liste-b');
   if (!zone || zone.scrollWidth <= zone.clientWidth) return;
   const z = zone.getBoundingClientRect(), r = el.getBoundingClientRect();
   zone.scrollTo({ left: zone.scrollLeft + r.left - z.left - (z.width - r.width) / 2, behavior: calme ? 'auto' : 'smooth' });
@@ -215,7 +221,10 @@ const REDESSINS = new Set();
 const GAPS = { libelles: ['≤ 1 mois', '1 à 3 mois', '3 à 12 mois', '1 à 5 ans', '> 5 ans'], gap: [15, -15, 5, 60, -65], cumul: [15, 0, 5, 65, 0] };
 function poserGaps(hote, serie) {
   if (!hote.children.length) hote.innerHTML = GAPS.libelles.map((l, k) => `<div class="col" style="--k:${k}"><i></i><em></em><span>${l}</span></div>`).join('');
-  const zero = 42, echelle = 30 / 70;
+  // La ligne zéro suit les valeurs : sans valeur négative, les barres prennent toute la hauteur.
+  const pos = Math.max(0, ...serie), neg = Math.max(0, ...serie.map((v) => -v));
+  const haut = 14, bas = neg ? 20 : 9, echelle = (100 - haut - bas) / (pos + neg || 1), zero = haut + pos * echelle;
+  hote.style.setProperty('--zero', `${zero}%`);
   $$('.col', hote).forEach((c, i) => {
     const v = serie[i], h = Math.max(Math.abs(v) * echelle, v === 0 ? .6 : 0), t = v >= 0 ? zero - h : zero;
     const barre = $('i', c), val = $('em', c);
@@ -342,14 +351,14 @@ const DEMOS = {
       $('#kEve').textContent = `${signe(eve, 1)} %`;
       $('#kMni').textContent = `ΔMNI à un an : ${signe(mni, 1)} %`;
       $('#kEtat').textContent = eve < 0 ? '✓ Sous le seuil de 15 % du test des valeurs extrêmes.' : '✓ Gain de valeur économique.';
-      $$('#chocs button').forEach((b, j) => b.setAttribute('aria-pressed', String(j === i)));
+      $$('#chocs button').forEach((b, j) => { b.setAttribute('aria-pressed', String(j === i)); if (j === i) centrer(b); });
     };
     const choisir = (j) => {
       const dep = deltas, cib = MATS.map((t) => CHOCS[j][3](t) / 100);
       i = j; infos(); cancelAnimationFrame(image);
       if (calme) { deltas = cib; dessin(); return; }
       const t0 = performance.now();
-      const pas = (t) => { const u = Math.min((t - t0) / 700, 1), l = 1 - Math.pow(1 - u, 3); deltas = dep.map((d, k) => d + (cib[k] - d) * l); if (svg.isConnected) { dessin(); if (u < 1) image = requestAnimationFrame(pas); } };
+      const pas = (t) => { const u = Math.max(0, Math.min((t - t0) / 700, 1)), l = 1 - Math.pow(1 - u, 3); deltas = dep.map((d, k) => d + (cib[k] - d) * l); if (svg.isConnected) { dessin(); if (u < 1) image = requestAnimationFrame(pas); } };
       image = requestAnimationFrame(pas);
     };
     $('#chocs').innerHTML = CHOCS.map((c) => `<button type="button">${c[0]}</button>`).join('');
@@ -671,6 +680,7 @@ $$('[data-famille]').forEach((z) => {
     i = k; t0 = null;
     img.forEach((x, j) => x.classList.toggle('on', j === k));
     o.forEach((x, j) => { x.setAttribute('aria-pressed', String(j === k)); x.style.setProperty('--p', 0); });
+    $('#legendeC').textContent = $('span', o[k]).textContent;
   };
   o.forEach((b, k) => b.addEventListener('click', () => { auto = false; poser(k); }));
   poser(0);
@@ -695,7 +705,7 @@ $$('[data-famille]').forEach((z) => {
   let i = 0, anim = 0;
   const tween = (el, de, a, d, suf) => {
     const t0 = performance.now();
-    const pas = (t) => { const u = Math.min((t - t0) / 800, 1), l = 1 - Math.pow(1 - u, 3); el.textContent = nombre(de + (a - de) * l, d) + suf; if (u < 1) requestAnimationFrame(pas); };
+    const pas = (t) => { const u = Math.max(0, Math.min((t - t0) / 800, 1)), l = 1 - Math.pow(1 - u, 3); el.textContent = nombre(de + (a - de) * l, d) + suf; if (u < 1) requestAnimationFrame(pas); };
     requestAnimationFrame(pas);
   };
   const etat = { l: 131, e: -11.2, h: 49 };

@@ -122,7 +122,7 @@ h1 em { font-style: normal; color: var(--acc-hi); }
 
 /* Barres de gaps */
 .gaps { position: relative; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; height: var(--h, 15rem); }
-.gaps::after { content: ""; position: absolute; left: 0; right: 0; top: 42%; height: 1px; background: var(--line-3); }
+.gaps::after { content: ""; position: absolute; left: 0; right: 0; top: var(--zero, 42%); height: 1px; background: var(--line-3); transition: top .7s var(--ease); }
 .col { position: relative; }
 .col i { position: absolute; left: 18%; right: 18%; display: block; transition: top .7s var(--ease), height .7s var(--ease), background .3s; background: var(--acc); }
 .col i.n { background: var(--bad); }
@@ -631,6 +631,173 @@ html.deck.mobile { font-size: clamp(11.5px, min(3.6vw, 1.95vh), 17px); overscrol
 .deck.mobile .form .seg button { flex: 1 1 0; min-height: 2.8rem; padding-inline: .2rem; font-size: .8125rem; }
 .deck.mobile .form .btn.grand { min-height: 3rem; font-size: 1rem; }
 .deck.mobile .form .note-f { font-size: .8125rem; line-height: 1.25; }
+
+/* Téléphone, version épurée : une idée par écran, un titre, un seul chiffre ou graphique, un seul réglage. */
+.deck.mobile .scene { padding-top: 4.2rem; }
+.deck.mobile .surtitre { display: none; }
+.deck.mobile h1 { font-size: 2.6rem; margin-top: 0; }
+.deck.mobile h2 { font-size: 1.85rem; margin-top: 0; }
+.deck.mobile .gain h2 { min-height: 2.3em; margin-top: 0; font-size: 1.6rem; }
+.deck.mobile .page { gap: 1.1rem; }
+
+/* Bas d'écran plus léger */
+.deck.mobile .commandes { border-top: 0; background: none; }
+.deck.mobile #prec, .deck.mobile #suiv { border: 0; background: none; color: var(--acc-hi); font-size: 1.7rem; }
+.deck.mobile #prec:disabled, .deck.mobile #suiv:disabled { color: var(--line-2); }
+
+/* Accueil */
+.deck.mobile .hero { gap: 1.4rem; }
+.deck.mobile .hero .chapo { font-size: 1.0625rem; line-height: 1.45; }
+.deck.mobile .hero-cta .btn:nth-child(2), .deck.mobile .atouts, .deck.mobile .chaine, .deck.mobile .ecran-t > span:first-child { display: none; }
+.deck.mobile .hero-cta { margin-top: 1rem; }
+.deck.mobile .ecran-t { justify-content: flex-end; }
+.deck.mobile #gapsHero { --h: 11rem !important; height: 11rem; }
+
+/* Ce qui change : seulement le résultat */
+.deck.mobile #s-avant .cmp { border-top: 0; }
+.deck.mobile #s-avant .cmp-l { padding: .75rem 0; border-bottom: 1px solid var(--line); background: none; }
+.deck.mobile #s-avant .cmp-l p:first-of-type { display: none; }
+.deck.mobile #s-avant .cmp-l b { font-size: 1.125rem; color: var(--acc-hi); }
+.deck.mobile #s-avant .cmp-l p { font-size: 1rem; font-weight: 400; line-height: 1.38; }
+
+/* Les 13 modules */
+.deck.mobile .socle, .deck.mobile .maison .toit, .deck.mobile .fam { border: 0; background: none; }
+.deck.mobile .socle { display: none; }
+.deck.mobile .maison .toit { display: none; }
+.deck.mobile .maison .toit-z { padding-top: 0; }
+.deck.mobile .fam { padding: 0; gap: .4rem; }
+.deck.mobile .piliers { gap: .8rem; margin-top: .8rem; }
+.deck.mobile .fam-t { font-size: .875rem; font-weight: 600; color: var(--dim); }
+.deck.mobile .chip { min-height: 2.3rem; font-size: .9375rem; }
+.deck.mobile .detail { height: 7.2rem; margin-top: .9rem; padding: .6rem 0 0; border-left: 0; border-top: 1px solid var(--line-2); background: none; align-content: flex-start; }
+.deck.mobile .detail b { display: none; }
+
+/* L'application */
+.deck.mobile .appli { gap: .9rem; }
+.deck.mobile .onglets-c button { min-height: 3rem; align-content: center; }
+
+/* Modules : le titre, les onglets, la démonstration sans cadre */
+.deck.mobile #s-bilan header, .deck.mobile #s-risques header, .deck.mobile #s-portefeuille header { display: none; }
+.deck.mobile #s-bilan .page, .deck.mobile #s-risques .page, .deck.mobile #s-portefeuille .page { gap: 0; }
+.deck.mobile .mod, .deck.mobile .scenette.seule, .deck.mobile .mod .scenette { gap: .8rem; }
+.deck.mobile .gain ul, .deck.mobile .sous-t, .deck.mobile .demo .phrase, .deck.mobile .demo .reboucle, .deck.mobile .bande { display: none !important; }
+.deck.mobile .demo { gap: .8rem; padding: 0; border: 0; border-radius: 0; background: none; }
+.deck.mobile .demo-t { flex: none; }
+.deck.mobile .duo { display: flex; flex-direction: column; gap: 1.1rem; }
+.deck.mobile .duo > .colonne { flex: 1 1 auto; gap: .9rem; justify-content: center; }
+.deck.mobile .colonne > .tuiles { flex: none; gap: .5rem; }
+.deck.mobile .colonne > .tuiles .tuile { padding: .9rem .6rem; }
+.deck.mobile .colonne > .tuiles b { font-size: 1.3rem; }
+.deck.mobile .colonne > .tuiles .tuile span { font-size: .75rem; }
+.deck.mobile .barres { gap: .9rem; grid-auto-rows: auto; align-content: center; }
+.deck.mobile .barres .rail-s { height: .8rem; }
+.deck.mobile .seuil, .deck.mobile .seuil.large { grid-template-columns: 8.5rem minmax(0, 1fr) 4.8rem; font-size: .9375rem; }
+.deck.mobile .seuil strong { font-size: 1rem; }
+.deck.mobile .cle b { font-size: 2.5rem; line-height: 1; }
+.deck.mobile .cle p { font-size: .9375rem; }
+.deck.mobile .cote { gap: .9rem; overflow: hidden; }
+.deck.mobile .cote > .colonne { padding-bottom: .15rem; }
+.deck.mobile .cote > .colonne { gap: .75rem; }
+.deck.mobile svg.g text { font-size: 11px; }
+.deck.mobile .curseur label, .deck.mobile .curseur output { font-size: .9375rem; }
+.deck.mobile input[type="range"] { height: 2rem; }
+/* Un seul réglage et une seule lecture par module */
+.deck.mobile .liste-b { display: flex; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.deck.mobile .liste-b::-webkit-scrollbar { display: none; }
+.deck.mobile .liste-b button { flex: none; min-height: 2.2rem; padding-inline: .7rem; font-size: .875rem; white-space: nowrap; }
+.deck.mobile #gRatio, .deck.mobile #ratioP, .deck.mobile #kMni, .deck.mobile #pP, .deck.mobile #stS, .deck.mobile #stF, .deck.mobile #stPlan, .deck.mobile #gRisk, .deck.mobile #gCh, .deck.mobile #chE + p, .deck.mobile #gB, .deck.mobile #demo-risques .duo-i .tb, .deck.mobile .curseur:has(#rP), .deck.mobile #tciC .curseur:nth-child(-n+2), .deck.mobile #gC .curseur:nth-child(-n+2), .deck.mobile #gT tbody tr:nth-child(2), .deck.mobile #gT tbody tr:nth-child(4) { display: none; }
+.deck.mobile .colonne > .ratios { flex: 1 1 auto; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: .5rem; }
+.deck.mobile .ratio { align-content: center; padding: .6rem .7rem; gap: .15rem; }
+.deck.mobile .ratio:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.deck.mobile .ratio span { font-size: .8125rem; line-height: 1.2; }
+.deck.mobile .ratio b { font-size: 1.6rem; }
+.deck.mobile .ratio small { font-size: .75rem; }
+.deck.mobile .duo-i > .colonne:last-child { flex: 1 1 0; min-height: 0; }
+.deck.mobile .demo-t > .mono { display: none; }
+.deck.mobile #demoGpo .duo { justify-content: center; gap: 1.6rem; }
+.deck.mobile #demoGpo .duo > .colonne { flex: none; }
+.deck.mobile #demoGpo td, .deck.mobile #demoGpo th { padding-block: .7rem; font-size: .9375rem; }
+.deck.mobile .marche { font-size: .9375rem !important; }
+
+/* Reporting : l'escalier, sans le tableau */
+.deck.mobile #s-reporting .tb { display: none; }
+.deck.mobile #s-reporting .page { gap: 1.8rem; }
+.deck.mobile .marches { gap: 1.25rem; }
+.deck.mobile #s-reporting .niv:nth-child(n) { display: block; padding: .15rem 0 .15rem .75rem; border: 0; border-left: 2px solid var(--acc); background: none; }
+.deck.mobile .niv b { display: block; font-size: 1.0625rem; }
+.deck.mobile .niv p { margin-top: .15rem; font-size: .9375rem; line-height: 1.35; color: var(--dim); }
+.deck.mobile #s-reporting .actions { flex-wrap: nowrap; }
+.deck.mobile #s-reporting .btn.ajout { flex: 1 1 0; min-height: 2.6rem; padding-inline: .4rem; font-size: .75rem; white-space: normal; line-height: 1.15; }
+
+/* Confiance : les titres suffisent */
+.deck.mobile .gar p, .deck.mobile .etapes p { display: none; }
+.deck.mobile .gar { gap: .9rem 1rem; padding-top: 1rem; }
+.deck.mobile .gar b { font-size: 1rem; font-weight: 600; }
+.deck.mobile .etapes { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem .5rem; margin-top: .4rem; padding-top: 1rem; border-top: 1px solid var(--line-2); }
+.deck.mobile .etapes b { font-size: .9375rem; font-weight: 600; }
+
+/* Demande de démo : trois champs et un bouton */
+.deck.mobile #s-demo { align-items: center; }
+.deck.mobile .fin { gap: 1.1rem; }
+.deck.mobile .form { gap: .7rem; padding: 0; border: 0; background: none; }
+.deck.mobile .form h3, .deck.mobile #form > fieldset:first-of-type, .deck.mobile .form .note-f, .deck.mobile .contact > p:first-child, .deck.mobile .contact .copier { display: none; }
+.deck.mobile .form .deux-f { grid-template-columns: minmax(0, 1fr); gap: .7rem; }
+.deck.mobile .contact { order: 2; margin-top: .3rem; padding-top: 0; border: 0; }
+.deck.mobile .fin > div:first-child { display: contents; }
+.deck.mobile .fin h2 { order: -1; }
+.deck.mobile .form { order: 1; }
+
+/* Téléphone : un haut d'écran hiérarchisé. Le titre respire, les onglets dominent, les sous-onglets restent légers. */
+.deck.mobile .scene { padding-top: 4.6rem; }
+.deck.mobile .mod, .deck.mobile .scenette.seule { gap: 1.1rem; }
+.deck.mobile .mod .scenette { gap: .9rem; }
+.deck.mobile .gain h2 { min-height: 0; margin-bottom: .1rem; }
+.deck.mobile .demo { gap: .9rem; }
+.deck.mobile .demo-t { display: contents; }
+.deck.mobile .zoneC { flex: none; }
+.deck.mobile .demo-t .note-i { order: 9; align-self: flex-end; }
+.deck.mobile .demo .seg { gap: .15rem; }
+.deck.mobile .demo .seg button { min-height: 2rem; border-color: transparent; background: none; color: var(--dim); font-weight: 500; box-shadow: none; }
+.deck.mobile .demo .seg button:hover { border-color: transparent; background: none; color: var(--text); box-shadow: none; }
+.deck.mobile .demo .seg button[aria-pressed="true"], .deck.mobile .demo .seg button[aria-pressed="true"]:hover { border-color: transparent; border-bottom-color: var(--acc-hi); border-radius: 0; background: none; color: var(--acc-hi); font-weight: 600; }
+
+/* Téléphone, écran Confiance : le titre en haut, les garanties au milieu, les étapes en bas, sur toute la hauteur. */
+.deck.mobile #s-confiance .page { height: 100%; justify-content: space-between; gap: 1.2rem; }
+.deck.mobile #s-confiance .gar { flex: 1 1 auto; align-content: space-evenly; gap: 1rem 1.1rem; padding-top: 1rem; }
+.deck.mobile #s-confiance .gar b { display: block; font-size: 1.0625rem; font-weight: 700; color: var(--acc-hi); }
+.deck.mobile #s-confiance .gar p { display: block; margin-top: .25rem; font-size: .9375rem; line-height: 1.36; color: var(--muted); }
+.deck.mobile #s-confiance .etapes { flex: none; margin-top: 0; padding-top: 1.1rem; }
+
+/* Téléphone, slides 2, 3, 4 et 8 : le titre en haut, le contenu réparti sur toute la hauteur. */
+.deck.mobile #s-avant .page, .deck.mobile #s-modules .page, .deck.mobile #s-appli .page, .deck.mobile #s-reporting .page { height: 100%; justify-content: flex-start; gap: 1.1rem; }
+
+/* 2. Ce qui change */
+.deck.mobile #s-avant .cmp { flex: 1 1 auto; min-height: 0; grid-auto-rows: 1fr; border-top: 1px solid var(--line-2); }
+.deck.mobile #s-avant .cmp-l { align-content: center; }
+.deck.mobile #s-avant .cmp-l b { font-size: 1.1875rem; }
+.deck.mobile #s-avant .cmp-l p { margin-top: .2rem; font-size: 1.0625rem; }
+
+/* 3. Les 13 modules */
+.deck.mobile #s-modules .maison { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.deck.mobile #s-modules .toit-z { flex: none; }
+.deck.mobile #s-modules .piliers { flex: 1 1 auto; align-content: space-evenly; margin-top: 0; }
+.deck.mobile #s-modules .detail { flex: none; margin-top: 0; }
+
+/* 4. L'application : les onglets côte à côte, la capture entière, sa légende */
+.deck.mobile #legendeC[hidden] { display: block !important; }
+.deck.mobile #s-appli .appli { flex: 1 1 auto; min-height: 0; gap: 1.1rem; }
+.deck.mobile #s-appli .onglets-c { flex: none; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .35rem; }
+.deck.mobile #s-appli .onglets-c button { display: grid; min-height: 3.4rem; padding: .35rem .3rem; align-content: center; text-align: center; }
+.deck.mobile #s-appli .onglets-c button b { font-size: .875rem; line-height: 1.2; }
+.deck.mobile #s-appli .onglets-c button span { display: none; }
+.deck.mobile #s-appli .captures { flex: none; margin-top: auto; }
+.deck.mobile #s-appli .legende-c { margin: 0 0 auto; font-size: 1.0625rem; line-height: 1.4; color: var(--muted); }
+
+/* 8. Reporting */
+.deck.mobile #s-reporting .marches { flex: 1 1 auto; min-height: 0; grid-auto-rows: 1fr; gap: .9rem; }
+.deck.mobile #s-reporting .niv:nth-child(n) { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding-block: .3rem; text-align: left; }
+.deck.mobile #s-reporting .niv b { font-size: 1.1875rem; }
+.deck.mobile #s-reporting .niv p { margin-top: .25rem; font-size: 1rem; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
