@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ALCO One, présentation</title>
+<meta name="description" content="ALCO One réunit le pilotage du bilan, la gestion des risques, le portefeuille obligataire et le reporting réglementaire des établissements de crédit des zones UMOA et CEMAC.">
+<meta name="theme-color" content="#040d24">
+<meta name="robots" content="noindex, nofollow">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a2458'/%3E%3Cpath d='M5 21 L22 8 L27 20 L24 20 L21.5 13 L8 21.5 Z' fill='%236fb6ff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="polices.css">
+<link rel="stylesheet" href="style.css">
+<script>(function () { var d = document.documentElement; if (innerWidth > 860 && innerHeight > 500) d.classList.add('deck'); d.classList.add('js'); })();</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-face" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f8ff"/><stop offset=".42" stop-color="#b4cdf2"/><stop offset=".58" stop-color="#7aa2df"/><stop offset="1" stop-color="#4a78c4"/></linearGradient>
+    <linearGradient id="g-flanc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a56a3"/><stop offset="1" stop-color="#0c2252"/></linearGradient>
+    <linearGradient id="g-toit" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2b63c6"/><stop offset="1" stop-color="#5ea8ff"/></linearGradient>
+    <linearGradient id="g-toit-d" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9fd0ff"/><stop offset="1" stop-color="#3f84e6"/></linearGradient>
+    <text id="logo-mot" x="600" y="312" text-anchor="middle" textLength="1080" lengthAdjust="spacing" font-family="Montserrat, Arial, sans-serif" font-weight="800" font-size="200">ALCO ONE</text>
+  </defs>
+  <symbol id="logo" viewBox="0 0 1200 340">
+    <use href="#logo-mot" transform="translate(4 9)" fill="#081a40"/>
+    <use href="#logo-mot" transform="translate(3 7)" fill="url(#g-flanc)"/>
+    <use href="#logo-mot" transform="translate(2 5)" fill="url(#g-flanc)"/>
+    <use href="#logo-mot" transform="translate(1 2.5)" fill="#3563ad"/>
+    <use href="#logo-mot" fill="url(#g-face)"/>
+    <polygon points="520,160 990,22 1004,52 548,163" fill="url(#g-toit)"/>
+    <polygon points="990,22 1132,158 1100,160 1004,52" fill="url(#g-toit-d)"/>
+  </symbol>
+</svg>
+
+<!-- L'ouverture : la vidéo du logo en plein écran, bords estompés, puis le logo vectoriel, net à toute taille. -->
+<div class="intro" id="intro">
+  <video id="introVideo" src="medias/ouverture.mp4" muted playsinline preload="auto"></video>
+  <svg class="intro-logo" viewBox="0 0 1200 340" role="img" aria-label="ALCO One"><use href="#logo"/></svg>
+  <button type="button" class="intro-passer" id="introPasser">Passer l’ouverture</button>
+</div>
+
+<header class="barre">
+  <button type="button" class="logo-b" data-aller="s-accueil" aria-label="ALCO One, revenir au début"><svg aria-hidden="true" viewBox="0 0 1200 340"><use href="#logo"/></svg></button>
+  <nav class="nav" aria-label="Parcours">
+    <button type="button" data-aller="s-modules">Les 13 modules</button>
+    <button type="button" data-aller="s-appli">L’application</button>
+    <button type="button" data-aller="s-bilan">Bilan</button>
+    <button type="button" data-aller="s-risques">Risques</button>
+    <button type="button" data-aller="s-portefeuille">Portefeuille</button>
+    <button type="button" data-aller="s-reporting">Reporting</button>
+    <button type="button" data-aller="s-confiance">Confiance</button>
+  </nav>
+  <button type="button" class="btn pri" data-aller="s-demo">Demander une démo <span class="compteur" id="compteur" hidden>0</span></button>
+  <div class="progres" id="progres"></div>
+</header>
+
+<main class="pile">
+<section class="scene" id="s-accueil" aria-label="Accueil">
+  <div class="page">
+    <div class="hero">
+      <div>
+        <p class="surtitre" data-e>Plateforme ALCO pour l’UMOA et la CEMAC</p>
+        <h1 data-e style="--i:1">Du classeur au dossier du comité, sur <em>un seul arrêté</em></h1>
+        <p class="chapo" data-e style="--i:2">ALCO One réunit la gestion actif-passif, les risques, le portefeuille obligataire et le reporting réglementaire de votre banque. Chaque chiffre dit d’où il vient.</p>
+        <div class="hero-cta" data-e style="--i:3">
+          <button type="button" class="btn pri grand" data-aller="s-demo">Demander une démo</button>
+          <button type="button" class="btn grand" data-aller="s-modules">Voir les 13 modules</button>
+        </div>
+        <div class="atouts" data-e style="--i:4"><span><b>13</b> modules</span><span><b>2</b> zones réglementaires</span><span><b>Chez vous</b> ou hébergé par nos soins</span></div>
+      </div>
+      <div class="cockpit" data-e style="--i:2">
+        <div class="toit"></div>
+        <div class="ecran">
+          <div class="ecran-t"><span>Scénario : <span id="heroScenario">Parallèle haussier</span></span><span class="note-i">Valeurs d’illustration</span></div>
+          <div class="tuiles">
+            <div class="tuile"><span>LCR</span><b class="ok" id="heroLcr">131 %</b></div>
+            <div class="tuile"><span>ΔEVE sur Tier 1</span><b id="heroEve">−11,2 %</b></div>
+            <div class="tuile"><span>Horizon de survie</span><b id="heroHz">49 j</b></div>
+          </div>
+          <div class="gaps" id="gapsHero" style="--h:11rem"></div>
+          <div class="chaine"><span>Classeur contrôlé</span><i></i><span>Calculs</span><i></i><span>Dossier du comité</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-avant" aria-label="Ce qui change">
+  <div class="page">
+    <header data-e><p class="surtitre">Pourquoi changer</p><h2>Ce qui change dès votre prochain comité</h2></header>
+    <div class="cmp" id="cmp" data-e style="--i:1">
+      <div class="cmp-t"><span></span><span>Avec des classeurs</span><span>Avec ALCO One</span></div>
+      <div class="cmp-l"><b>Données</b><p>Des fichiers par service, des versions qui circulent, des écarts à réconcilier.</p><p>Un classeur contrôlé, publié une fois, que lisent tous les modules.</p></div>
+      <div class="cmp-l"><b>Calculs</b><p>Des formules à reprendre à chaque arrêté, et une seule personne qui les maîtrise.</p><p>Des moteurs versionnés, lancés en un geste, suivis étape par étape.</p></div>
+      <div class="cmp-l"><b>Explication</b><p>Un écart constaté le jour du comité, une cause à chercher après.</p><p>Une décomposition effet par effet, qui reboucle exactement sur l’écart.</p></div>
+      <div class="cmp-l"><b>Preuve</b><p>Une piste d’audit à reconstituer à la main, pièce par pièce.</p><p>L’empreinte de chaque fichier, la trace de chaque calcul, la provenance de chaque chiffre.</p></div>
+      <div class="cmp-l"><b>Dossier</b><p>Un document assemblé par copier-coller, sans version ni circuit.</p><p>Un dossier produit, versionné, revu puis validé selon un circuit tracé.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-modules" aria-label="Les 13 modules">
+  <div class="page">
+    <header data-e><p class="surtitre">La plateforme</p><h2>Treize modules, qui lisent tous le même arrêté</h2></header>
+    <div class="maison" data-e style="--i:1">
+      <div class="toit-z">
+        <div class="toit"></div>
+        <div class="fam"><p class="fam-t">Reporting et dossier du comité</p><div class="chips" data-famille="reporting"></div></div>
+      </div>
+      <div class="piliers">
+        <div class="fam"><p class="fam-t">Pilotage du bilan</p><div class="chips" data-famille="bilan"></div></div>
+        <div class="fam"><p class="fam-t">Gestion des risques</p><div class="chips" data-famille="risques"></div></div>
+        <div class="fam"><p class="fam-t">Portefeuille obligataire</p><div class="chips" data-famille="portefeuille"></div></div>
+      </div>
+      <div class="socle">Un arrêté contrôlé, une seule source de données</div>
+      <div class="detail" id="detailMod" aria-live="off"></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-appli" aria-label="L’application">
+  <div class="page">
+    <header data-e><p class="surtitre">L’application</p><h2>Des écrans conçus pour préparer le comité</h2></header>
+    <div class="appli" data-e style="--i:1">
+      <div class="onglets-c" id="ongletsC" role="group" aria-label="Écrans">
+        <button type="button" data-c="0"><b>Analyse du bilan</b><span>Chaque indicateur porte son statut, son seuil et son écart.</span></button>
+        <button type="button" data-c="1"><b>Écoulement</b><span>Le bilan écoulé, poste par poste, par time bucket.</span></button>
+        <button type="button" data-c="2"><b>Portefeuille obligataire</b><span>Le portefeuille lu sur deux scores, avant et après une décision.</span></button>
+      </div>
+      <div class="captures" id="cadreI">
+        <img src="medias/analyse-bilan.png" alt="Synthèse de l’analyse du bilan : indicateurs clés, statuts et seuils">
+        <img src="medias/ecoulement.png" alt="Écoulement du bilan : encours et bilan ALM écoulé par time bucket">
+        <img src="medias/gpo.png" alt="Matrice stratégique du portefeuille obligataire, avant et après, sur le score de crédit et le score de taux">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-bilan" aria-label="Pilotage du bilan">
+  <div class="page">
+    <header data-e><p class="surtitre">Pilotage du bilan · 6 modules</p></header>
+    <div class="mod" data-e style="--i:1" id="modBilan"></div>
+  </div>
+</section>
+
+<section class="scene" id="s-risques" aria-label="Gestion des risques">
+  <div class="page">
+    <header data-e><p class="surtitre">Gestion des risques · 4 modules</p></header>
+    <div class="mod" data-e style="--i:1" id="modRisques"></div>
+  </div>
+</section>
+
+<section class="scene" id="s-portefeuille" aria-label="Portefeuille obligataire">
+  <div class="page">
+    <header data-e><p class="surtitre">Portefeuille obligataire · 1 module</p></header>
+    <div class="scenette seule" data-e style="--i:1">
+      <div class="gain"><div class="fondu">
+        <h2>Décidez d’un achat en voyant son effet</h2>
+        <ul><li>Inventaire, échéancier, concentration</li><li>Duration, DV01 et VaR à 99 %</li><li>Stress et traçabilité de chaque évaluation</li></ul>
+        <div class="actions"><button type="button" class="btn ajout" data-ajout="gpo">Ajouter à ma démo</button></div>
+      </div></div>
+      <div class="demo" id="demoGpo"></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="s-reporting" aria-label="Reporting">
+  <div class="page">
+    <header data-e><p class="surtitre">Reporting · 2 modules</p><h2>Du graphique d’un écran aux états remis au superviseur</h2></header>
+    <ol class="marches" id="marches" data-e style="--i:1">
+      <li class="niv"><b>Depuis chaque écran</b><p>Exporter ce que l’écran montre.</p><small>Image, CSV</small></li>
+      <li class="niv"><b>Rapport standard</b><p>Les analyses d’un module, aux chiffres exacts de l’écran.</p><small>Excel, PDF, PowerPoint</small></li>
+      <li class="niv"><b>Mes rapports</b><p>Vos analyses à composer, avec vos titres et vos commentaires.</p><small>Excel, PDF, PowerPoint</small></li>
+      <li class="niv"><b>Rapport final ALCO</b><p>Le dossier du comité, versionné, revu puis validé.</p><small>PDF, Excel, PowerPoint</small></li>
+      <li class="niv"><b>États réglementaires</b><p>Les états de votre zone, avec leur circuit de remise.</p><small>Format de remise</small></li>
+    </ol>
+    <div class="tb" data-e style="--i:2">
+      <table>
+        <thead><tr><th>Référentiel</th><th>UMOA</th><th>CEMAC</th></tr></thead>
+        <tbody>
+          <tr><td>Supervision</td><td><b>BCEAO</b>, Commission bancaire de l’UMOA</td><td><b>BEAC</b>, COBAC</td></tr>
+          <tr><td>États remis</td><td>DEC 2062 et DEC 2063, déclaration FODEP</td><td>États CERBER</td></tr>
+          <tr><td>Liquidité</td><td>Coefficient de liquidité, LCR, NSFR</td><td>Rapport de liquidité, coefficient de transformation</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="actions" data-e style="--i:3"><button type="button" class="btn ajout" data-ajout="rapports">Ajouter les rapports à ma démo</button><button type="button" class="btn ajout" data-ajout="etats">Ajouter les états à ma démo</button></div>
+  </div>
+</section>
+
+<section class="scene" id="s-confiance" aria-label="Confiance et mise en route">
+  <div class="page">
+    <header data-e><p class="surtitre">Confiance</p><h2>Une plateforme sous contrôle, du contrat au premier comité</h2></header>
+    <div class="gar" data-e style="--i:1">
+      <div><b>Installé chez vous</b><p>Sur le serveur de l’établissement, y compris sans accès Internet, ou hébergé par l’éditeur.</p></div>
+      <div><b>33 rôles livrés</b><p>Trois lignes de défense, des rôles personnalisables et des cumuls interdits.</p></div>
+      <div><b>Accès protégés</b><p>Second facteur imposable, sessions révocables, TLS 1.2 et 1.3.</p></div>
+      <div><b>Provenance</b><p>L’empreinte de chaque fichier et l’origine de chaque résultat.</p></div>
+      <div><b>Mises à jour signées</b><p>Sauvegarde préalable obligatoire et journal des versions par module.</p></div>
+      <div><b>Assistance intégrée</b><p>Un centre d’aide ouvert depuis l’application, et une documentation sur l’instance.</p></div>
+    </div>
+    <ol class="etapes" id="etapes" data-e style="--i:2">
+      <li><b>Licence</b><p>Le service s’ouvre, ou le serveur s’installe avec votre équipe.</p></li>
+      <li><b>Membres</b><p>Chaque membre reçoit ses rôles.</p></li>
+      <li><b>Modèle</b><p>Le classeur de l’arrêté se remplit depuis vos extractions.</p></li>
+      <li><b>Arrêté</b><p>Le premier lot se publie, les conventions se règlent.</p></li>
+      <li><b>Calculs</b><p>Les calculs tournent et se rapprochent de vos chiffres.</p></li>
+      <li><b>Comité</b><p>Le dossier se produit, puis suit son circuit.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="scene" id="s-demo" aria-label="Demander une démo">
+  <div class="page">
+    <div class="fin">
+      <div data-e>
+        <p class="surtitre">Votre prochaine étape</p>
+        <h2>Voyez ALCO One sur un cas proche de votre établissement</h2>
+        <ul class="promesse">
+          <li>Les modules que vous avez choisis, et eux seuls</li>
+          <li>Le référentiel de votre zone, UMOA ou CEMAC</li>
+          <li>Le chemin complet, du classeur au dossier du comité</li>
+          <li>Nos références restent confidentielles : parlons-en de vive voix</li>
+        </ul>
+        <div class="contact">
+          <p>Vous préférez écrire directement ?</p>
+          <p class="adr"><a href="mailto:contact@heymannsinc.com">contact@heymannsinc.com</a><button type="button" class="copier" data-copier="contact@heymannsinc.com">Copier</button></p>
+        </div>
+      </div>
+      <form class="form" id="form" novalidate data-e style="--i:1">
+        <h3>Demander une démo</h3>
+        <fieldset class="champ"><legend>Modules à voir <span id="nbChoisis" class="mono"></span></legend><div class="chips" id="choixForm"></div></fieldset>
+        <div class="deux-f">
+          <div class="champ"><label for="fEtab">Établissement</label><input type="text" id="fEtab" autocomplete="organization"><p class="erreur" id="eEtab"></p></div>
+          <div class="champ"><label for="fNom">Nom et fonction</label><input type="text" id="fNom" autocomplete="name"><p class="erreur" id="eNom"></p></div>
+        </div>
+        <div class="deux-f">
+          <div class="champ"><label for="fMail">E-mail professionnel</label><input type="email" id="fMail" autocomplete="email"><p class="erreur" id="eMail"></p></div>
+          <fieldset class="champ"><legend>Zone</legend><div class="seg" id="fZone"></div></fieldset>
+        </div>
+        <input type="text" id="fSite" name="site" tabindex="-1" autocomplete="off" aria-hidden="true" hidden>
+        <div id="zoneAccord" hidden>
+          <label class="accord"><input type="checkbox" id="fAccord"><span>J’accepte que Heymann’s utilise ces informations pour me recontacter au sujet d’ALCO One.</span></label>
+          <p class="erreur" id="eAccord"></p>
+        </div>
+        <button type="submit" class="btn pri grand" id="fEnvoyer">Préparer ma demande</button>
+        <p class="erreur" id="eEnvoi" aria-live="polite"></p>
+        <p class="note-f" id="fNote">Votre messagerie s’ouvre avec la demande déjà rédigée. Cette page ne conserve aucune réponse.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="commandes" id="commandes">
+  <button type="button" class="btn" id="prec" aria-label="Écran précédent">‹ Précédent</button>
+  <span class="mono rang"><b id="rang">1</b> / <span id="total">10</span></span>
+  <button type="button" class="btn" id="suiv" aria-label="Écran suivant">Suivant ›</button>
+  <div class="commandes-d">
+    <button type="button" class="btn ajout" id="ajoutBarre" hidden>Ajouter à ma démo</button>
+    <button type="button" class="btn lecture" id="lecture" aria-pressed="false" aria-label="Mettre les animations en pause"></button>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

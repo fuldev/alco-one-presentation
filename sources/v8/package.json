@@ -1,0 +1,10 @@
+{
+  "name": "alco-one-presentation-v8",
+  "version": "8.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Présentation d'ALCO One en dix écrans, en un seul fichier HTML.",
+  "scripts": {
+    "construire": "node construire.mjs"
+  }
+}
