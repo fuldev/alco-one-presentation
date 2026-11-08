@@ -27,7 +27,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a2458'/%3E%3Cpath d='M5 21 L22 8 L27 20 L24 20 L21.5 13 L8 21.5 Z' fill='%236fb6ff'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="polices.css">
 <link rel="stylesheet" href="style.css">
-<script>(function () { var d = document.documentElement; if (innerWidth > 860 && innerHeight > 500) d.classList.add('deck'); d.classList.add('js'); })();</script>
+<script>(function () { var d = document.documentElement; d.classList.add('deck', 'js'); if (innerWidth <= 860) d.classList.add('mobile'); })();</script>
 </head>
 <body>
 
@@ -272,9 +272,9 @@
 </main>
 
 <div class="commandes" id="commandes">
-  <button type="button" class="btn" id="prec" aria-label="Écran précédent">‹ Précédent</button>
+  <button type="button" class="btn" id="prec" aria-label="Écran précédent">‹ <span class="lib">Précédent</span></button>
   <span class="mono rang"><b id="rang">1</b> / <span id="total">10</span></span>
-  <button type="button" class="btn" id="suiv" aria-label="Écran suivant">Suivant ›</button>
+  <button type="button" class="btn" id="suiv" aria-label="Écran suivant"><span class="lib">Suivant</span> ›</button>
   <div class="commandes-d">
     <button type="button" class="btn ajout" id="ajoutBarre" hidden>Ajouter à ma démo</button>
     <button type="button" class="btn lecture" id="lecture" aria-pressed="false" aria-label="Mettre les animations en pause"></button>

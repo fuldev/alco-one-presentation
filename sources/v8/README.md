@@ -1,7 +1,7 @@
 # Présentation ALCO One, version 8
 
-Dix écrans, un seul à la fois, qui s'ajustent à la fenêtre sans défilement. Sous 860 px de large, les
-écrans se suivent et la page défile.
+Dix écrans, un seul à la fois, qui s'ajustent à la fenêtre sans défilement, sur ordinateur comme sur
+téléphone. Sous 860 px de large, les écrans passent en composition verticale, au doigt ou avec les boutons.
 
 ## Construire
 

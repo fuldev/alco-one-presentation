@@ -462,6 +462,176 @@ tr.on td { background: var(--card-on); }
   .barre .btn { min-height: 2.5rem; padding-inline: .9rem; }
 }
 @media (max-width: 420px) { .tuiles { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .chaine { font-size: .75rem; } .chaine i { width: 1rem; } }
+/* Téléphone : le même mode diapositive, un écran à la fois, au doigt ou avec les boutons du bas. */
+html.deck.mobile { font-size: clamp(11.5px, min(3.6vw, 1.95vh), 17px); overscroll-behavior: none; }
+.deck.mobile body { overscroll-behavior: none; touch-action: manipulation; }
+.deck.mobile .barre { height: 3.4rem; padding-left: max(14px, env(safe-area-inset-left, 0px)); padding-right: max(14px, env(safe-area-inset-right, 0px)); }
+.deck.mobile .barre .btn { min-height: 2.5rem; font-size: .9375rem; }
+.deck.mobile .logo-b svg { height: 1.8rem; }
+.deck.mobile .scene { padding: 3.9rem 14px calc(3.6rem + env(safe-area-inset-bottom, 0px)); }
+.deck.mobile .page { gap: .6rem; }
+.deck.mobile h1 { font-size: 2.35rem; margin-top: .5rem; }
+.deck.mobile h2, .deck.mobile .gain h2 { font-size: 1.6rem; margin-top: .25rem; line-height: 1.15; text-wrap: balance; }
+.deck.mobile .surtitre { font-size: .75rem; letter-spacing: .1em; }
+.deck.mobile .chapo { font-size: 1rem; margin-top: .5rem; }
+
+/* Commandes du bas */
+.deck.mobile .commandes { left: 0; right: 0; bottom: 0; transform: none; justify-content: flex-start; gap: .4rem; padding: .45rem 14px calc(.45rem + env(safe-area-inset-bottom, 0px)); background: rgba(4, 13, 36, .9); border-top: 1px solid var(--line); }
+.deck.mobile .commandes .lib { display: none; }
+.deck.mobile #prec, .deck.mobile #suiv { min-width: 2.7rem; min-height: 2.6rem; padding: 0; font-size: 1.3rem; }
+.deck.mobile .rang { min-width: 3.1rem; font-size: .8125rem; }
+.deck.mobile .commandes-d { position: static; margin-left: auto; gap: .25rem; }
+.deck.mobile .commandes .btn.ajout { min-height: 2.6rem; padding-inline: .8rem; font-size: .875rem; }
+.deck.mobile .commandes .lecture { width: 1.7rem; height: 2.6rem; }
+
+/* Accueil */
+.deck.mobile .hero { gap: .8rem; }
+.deck.mobile .hero .chapo { font-size: 1rem; }
+.deck.mobile .hero-cta { flex-wrap: nowrap; gap: .5rem; margin-top: .8rem; }
+.deck.mobile .hero-cta .btn { flex: 1 1 0; min-height: 2.8rem; padding-inline: .5rem; font-size: .9375rem; }
+.deck.mobile .atouts { gap: .15rem 1rem; margin-top: .8rem; padding-top: .6rem; font-size: .875rem; }
+.deck.mobile .cockpit { padding-top: 2.6rem; }
+.deck.mobile .cockpit .toit { height: 2.8rem; }
+.deck.mobile .ecran { padding: .7rem; gap: .5rem; }
+.deck.mobile .ecran-t { font-size: .7rem; }
+.deck.mobile .tuiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .35rem; }
+.deck.mobile .tuile { padding: .45rem .5rem; }
+.deck.mobile .tuile b { font-size: 1.3rem; }
+.deck.mobile #gapsHero { --h: 8rem !important; height: 8rem; }
+.deck.mobile .col em { font-size: .75rem; }
+.deck.mobile .col span { font-size: .625rem; }
+
+/* Ce qui change */
+.deck.mobile #s-avant .page { gap: .5rem; }
+.deck.mobile #s-avant .cmp-l { gap: .1rem; padding: .5rem .4rem; }
+.deck.mobile #s-avant .cmp-l b { font-size: 1rem; }
+.deck.mobile #s-avant .cmp-l p { font-size: .875rem; line-height: 1.32; }
+
+/* Les 13 modules */
+.deck.mobile .maison .toit-z { padding-top: 2.5rem; }
+.deck.mobile .maison .toit { height: 2.7rem; }
+.deck.mobile .fam { gap: .35rem; padding: .5rem .6rem; }
+.deck.mobile .fam-t { font-size: .9375rem; }
+.deck.mobile .piliers { grid-template-columns: minmax(0, 1fr); gap: .35rem; margin-top: .35rem; }
+.deck.mobile .chips { gap: .25rem; }
+.deck.mobile .chip { min-height: 2rem; padding: .15rem .5rem; font-size: .875rem; }
+.deck.mobile .socle { margin-top: .35rem; padding: .4rem; font-size: .625rem; letter-spacing: .06em; }
+.deck.mobile .detail { flex-wrap: wrap; height: 7.6rem; gap: .35rem; margin-top: .4rem; padding: .5rem .7rem; align-content: center; }
+.deck.mobile .detail > div:first-child { flex: 1 1 100%; }
+.deck.mobile .detail p { font-size: .875rem; line-height: 1.3; }
+.deck.mobile .detail .btn { min-height: 2.2rem; padding-block: 0; font-size: .875rem; }
+
+/* L'application */
+.deck.mobile .appli { gap: .5rem; }
+.deck.mobile .onglets-c { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .3rem; }
+.deck.mobile .onglets-c button { padding: .45rem .4rem; text-align: center; }
+.deck.mobile .onglets-c button b { font-size: .8125rem; line-height: 1.2; }
+.deck.mobile .onglets-c button span { display: none; }
+
+/* Les écrans de modules prennent toute la hauteur, et la démonstration ce qui reste. */
+.deck.mobile #s-bilan .page, .deck.mobile #s-risques .page, .deck.mobile #s-portefeuille .page { height: 100%; gap: .25rem; }
+.deck.mobile .mod, .deck.mobile .scenette.seule { flex: 1; height: auto; min-height: 0; gap: .4rem; }
+.deck.mobile .mod .scenette { gap: .4rem; }
+.deck.mobile .gain { height: auto; }
+.deck.mobile .gain > .fondu { display: block; height: auto; }
+.deck.mobile .gain h2 { min-height: 2.3em; display: flex; align-items: center; }
+.deck.mobile .gain ul { display: block; margin-top: .1rem; }
+.deck.mobile .gain li { display: inline; font-size: .8125rem; line-height: 1.3; }
+.deck.mobile .gain li:not(:last-child)::after { margin-inline: .3rem; }
+.deck.mobile .rail { flex: none; }
+.deck.mobile .rail button { flex: none; min-height: 2.5rem; padding-inline: .8rem; font-size: .875rem; }
+.deck.mobile .demo { gap: .4rem; padding: .55rem; }
+.deck.mobile .demo-t { flex-wrap: wrap; justify-content: flex-end; gap: .15rem; min-height: 0; }
+.deck.mobile .zoneC { flex: 1 1 100%; overflow-x: auto; scrollbar-width: none; }
+.deck.mobile .zoneC:empty { display: none; }
+.deck.mobile .zoneC::-webkit-scrollbar { display: none; }
+.deck.mobile .note-i { font-size: .625rem; letter-spacing: 0; }
+.deck.mobile .seg { flex-wrap: nowrap; }
+.deck.mobile .seg button { flex: none; min-height: 2rem; padding: .1rem .55rem; font-size: .8125rem; white-space: nowrap; }
+.deck.mobile #vues button { padding-inline: .45rem; font-size: .75rem; }
+.deck.mobile .bascules { flex-wrap: nowrap; }
+.deck.mobile .bascules .chip { flex: none; white-space: nowrap; }
+.deck.mobile .duo, .deck.mobile .duo-i { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: .5rem; }
+.deck.mobile #demoGpo .duo { grid-template-rows: minmax(0, 1fr) auto; }
+.deck.mobile .colonne { gap: .35rem; }
+.deck.mobile .colonne > .tuiles, .deck.mobile .colonne > .ratios { flex: none; grid-auto-rows: auto; }
+.deck.mobile .colonne > .tuiles b { font-size: 1.15rem; }
+.deck.mobile .colonne > .tuiles .tuile span { font-size: .7rem; }
+.deck.mobile .phrase, .deck.mobile .reboucle { font-size: .8125rem; line-height: 1.3; }
+.deck.mobile .sous-t { font-size: .6875rem; letter-spacing: .03em; }
+.deck.mobile .barres { gap: .2rem; }
+.deck.mobile .barres .rail-s { height: .6rem; }
+.deck.mobile .seuil, .deck.mobile .seuil.large { grid-template-columns: 8.2rem minmax(0, 1fr) 3.7rem; gap: .4rem; font-size: .8125rem; }
+.deck.mobile .seuil strong { font-size: .875rem; }
+.deck.mobile .curseur label, .deck.mobile .curseur output { font-size: .8125rem; }
+.deck.mobile input[type="range"] { height: 1.5rem; }
+.deck.mobile .pile-g { gap: .2rem; }
+.deck.mobile .bande { height: .7rem; }
+.deck.mobile .cle span { font-size: .6875rem; }
+.deck.mobile .cle b { margin-top: .05rem; font-size: 1.6rem; }
+.deck.mobile .cle p { margin-top: .05rem; font-size: .8125rem; line-height: 1.25; }
+.deck.mobile .ratios { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .25rem; }
+.deck.mobile .ratio { padding: .3rem .4rem; gap: 0; }
+.deck.mobile .ratio span { font-size: .6875rem; line-height: 1.15; }
+.deck.mobile .ratio b { font-size: 1.05rem; }
+.deck.mobile .ratio small { font-size: .625rem; }
+.deck.mobile .cote { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr) auto; gap: .4rem; }
+.deck.mobile .liste-b { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .2rem; }
+.deck.mobile .liste-b button { min-height: 1.85rem; padding: .05rem .4rem; font-size: .75rem; }
+.deck.mobile #stPlan { min-height: 2.2rem; padding-block: 0; }
+.deck.mobile svg.g text { font-size: 10px; }
+.deck.mobile .marche { grid-template-columns: 6.6rem minmax(0, 1fr) 2.1rem; font-size: .8125rem !important; }
+.deck.mobile .col em { font-size: .75rem; }
+.deck.mobile #demoGpo td, .deck.mobile #demoGpo th { padding-block: .3rem; font-size: .8125rem; }
+.deck.mobile #demoGpo .pile-g { gap: 0; }
+.deck.mobile #tIlaap th, .deck.mobile #tIlaap td { padding: .2rem .25rem; font-size: .75rem; line-height: 1.18; }
+.deck.mobile #tIlaap th { font-size: .625rem; letter-spacing: 0; }
+/* En téléphone, ces phrases d'appoint laissent la place au graphique. */
+.deck.mobile #gRisk ~ .phrase, .deck.mobile #demo-risques .colonne > .barres + .phrase, .deck.mobile #tciCompo + .phrase, .deck.mobile #gCh + .phrase, .deck.mobile #demoGpo .phrase { display: none; }
+
+/* Reporting */
+.deck.mobile #s-reporting .page { gap: .5rem; }
+.deck.mobile .marches { grid-template-columns: minmax(0, 1fr); gap: .2rem; }
+.deck.mobile #s-reporting .niv:nth-child(n) { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); align-items: center; gap: 0 .5rem; min-height: 0; padding: .3rem .5rem; border-top-width: 1px; border-left: 2px solid var(--acc); transform: none; }
+.deck.mobile .niv b { font-size: .8125rem; }
+.deck.mobile .niv p { font-size: .75rem; line-height: 1.2; }
+.deck.mobile .niv small { display: none; }
+.deck.mobile #s-reporting td, .deck.mobile #s-reporting th { padding: .25rem .3rem; font-size: .75rem; line-height: 1.2; }
+.deck.mobile #s-reporting th { font-size: .625rem; }
+.deck.mobile #s-reporting .actions { gap: .3rem; }
+.deck.mobile #s-reporting .btn.ajout { flex: 1 1 100%; min-height: 2.3rem; padding-block: 0; font-size: .8125rem; }
+
+/* Confiance */
+.deck.mobile #s-confiance .page { gap: .6rem; }
+.deck.mobile .gar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem .8rem; padding-top: .6rem; }
+.deck.mobile .gar b { font-size: .9375rem; }
+.deck.mobile .gar p { margin-top: .05rem; font-size: .8125rem; line-height: 1.28; }
+.deck.mobile .etapes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem .8rem; margin-top: .2rem; }
+.deck.mobile .etapes li { padding-top: 0; padding-left: 1.05rem; }
+.deck.mobile .etapes li::before { top: .3rem; width: .55rem; height: .55rem; background: var(--acc-hi); }
+.deck.mobile .etapes b { font-size: .9375rem; }
+.deck.mobile .etapes p { margin-top: 0; font-size: .8125rem; line-height: 1.25; }
+
+/* Demande de démo : l'écran défile seulement si le clavier du téléphone en a besoin. */
+.deck.mobile #s-demo { align-items: flex-start; overflow-y: auto; }
+.deck.mobile .fin { grid-template-columns: minmax(0, 1fr); gap: .6rem; }
+.deck.mobile .promesse { display: none; }
+.deck.mobile .contact { margin-top: .4rem; padding-top: .4rem; font-size: .875rem; }
+.deck.mobile .contact .adr { margin-top: .1rem; }
+.deck.mobile .adr a { font-size: .875rem; }
+.deck.mobile .form { gap: .4rem; padding: .7rem; }
+.deck.mobile .form h3 { font-size: 1.2rem; }
+.deck.mobile .form .champ label, .deck.mobile .form .champ legend { font-size: .875rem; }
+.deck.mobile .form .champ legend { margin-bottom: .15rem; }
+.deck.mobile .form .chip.petit { min-height: 1.85rem; padding-inline: .45rem; font-size: .8125rem; }
+.deck.mobile .form .deux-f { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; }
+/* 16 px au moins : sinon iOS agrandit la page à chaque saisie. */
+.deck.mobile .form .champ input { height: 2.8rem; font-size: 16px; }
+.deck.mobile .form .erreur { min-height: 0; }
+.deck.mobile .form .seg button { flex: 1 1 0; min-height: 2.8rem; padding-inline: .2rem; font-size: .8125rem; }
+.deck.mobile .form .btn.grand { min-height: 3rem; font-size: 1rem; }
+.deck.mobile .form .note-f { font-size: .8125rem; line-height: 1.25; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
